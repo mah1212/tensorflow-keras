@@ -1,7 +1,7 @@
 '''
 Problem:
     There is a dataset called MNIST Fasion. 
-    There images and corresponding labels. 
+    There are images and corresponding labels. 
     labels are in integer from 0 to 9. 
     make a prediction by taking an image means
     tell us whether it is a boot or trouser 
@@ -96,11 +96,17 @@ model = keras.Sequential([
 '''    
 Compile the model
 
-Before the model is ready for training, it needs a few more settings. These are added during the model's compile step:
+Before the model is ready for training, it needs a few more settings. These are 
+added during the model's compile step:
 
-    Loss function —This measures how accurate the model is during training. We want to minimize this function to "steer" the model in the right direction.
-    Optimizer —This is how the model is updated based on the data it sees and its loss function.
-    Metrics —Used to monitor the training and testing steps. The following example uses accuracy, the fraction of the images that are correctly classified.
+    Loss function —This measures how accurate the model is during training. 
+    We want to minimize this function to "steer" the model in the right direction.
+    
+    Optimizer —This is how the model is updated based on the data it sees and 
+    its loss function.
+    
+    Metrics —Used to monitor the training and testing steps. The following example 
+    uses accuracy, the fraction of the images that are correctly classified.
 '''
 model.compile(optimizer='adam', 
               loss='sparse_categorical_crossentropy',
@@ -113,9 +119,12 @@ Train the model
 
 Training the neural network model requires the following steps:
 
-    Feed the training data to the model—in this example, the train_images and train_labels arrays.
+    Feed the training data to the model—in this example, the train_images and 
+    train_labels arrays.
     The model learns to associate images and labels.
-    We ask the model to make predictions about a test set—in this example, the test_images array. We verify that the predictions match the labels from the test_labels array.
+    We ask the model to make predictions about a test set—in this example, 
+    the test_images array. We verify that the predictions match the labels from 
+    the test_labels array.
 
 To start training, call the model.fit method—the model is "fit" to the training data:
 '''    
@@ -155,14 +164,17 @@ predictions[1]
 predictions[0]
 
 '''
-A prediction is an array of 10 numbers. These describe the "confidence" of the model that the image corresponds to each of the 10 different articles of clothing. We can see which label has the highest confidence value:
+A prediction is an array of 10 numbers. These describe the "confidence" of the 
+model that the image corresponds to each of the 10 different articles of clothing. 
+We can see which label has the highest confidence value:
 '''
 
 np.argmax(predictions[0])
 np.argmax(predictions[1])
 
 '''
-So the model is most confident that this image is an ankle boot, or class_names[9]. And we can check the test label to see this is correct:
+So the model is most confident that this image is an ankle boot, or class_names[9]. 
+And we can check the test label to see this is correct:
 '''
 test_labels[0] # 9 = Ankle Boot
 test_labels[1]  # 2 = Trousers
@@ -252,20 +264,21 @@ print(img.shape)
 # Add the image to a batch where it's the only member.
 img = (np.expand_dims(img,0))
 
-print(img.shape)
+print(img.shape) # (1, 28, 28)
 
 
 # Now predict a single image
 predictions_single = model.predict(img)
 
-print(predictions_single)
+print(predictions_single) 
 
 
 plot_value_array(0, predictions_single, test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
 
 
-# model.predict returns a list of lists, one for each image in the batch of data. Grab the predictions for our (only) image in the batch:
+# model.predict returns a list of lists, one for each image in the batch of data. 
+# Grab the predictions for our (only) image in the batch:
 
-np.argmax(predictions_single[0])
+np.argmax(predictions_single[0]) # 9
 
